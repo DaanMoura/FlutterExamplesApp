@@ -3,7 +3,7 @@ A Flutter application with examples of layouts, libraries, and stuffs that you c
 
 ## Tasks
 
-- [ ] Home page
+- [x] Home page
 - [ ] States and Layout Customization
 - [ ] SliverList and SliverGrid
 - [ ] Hero

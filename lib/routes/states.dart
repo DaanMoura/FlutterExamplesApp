@@ -18,6 +18,7 @@ class _StatesWithParametersState extends State<StatesWithParameters> {
   double bottomPadding = 8;
   double leftPadding = 8;
   double rightPadding = 8;
+  String tempInput;
 
   @override
   void initState() {
@@ -32,26 +33,59 @@ class _StatesWithParametersState extends State<StatesWithParameters> {
       barColor = Colors.blue;
       titleColor = Colors.white;
       bodyContent = "You can't change this content";
+      tempInput = "";
     });
+  }
+
+  void _updateInput(String input) {
+    setState(() {
+      tempInput = input;
+    });
+  }
+
+  void _updateLayout() {
+    setState(() {
+      bodyContent = tempInput;
+    });
+
+    Navigator.pop(context);
   }
 
   Widget _buildDialog() {
     return Center(
-      child: Material(
-        elevation: 6,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20))),
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                "Title of dialog",
-                style: Theme.of(context).textTheme.headline,
-              ),
-            ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Material(
+          elevation: 6,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  "Customization",
+                  style: Theme.of(context).textTheme.headline,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "Change the content here."
+                  ),
+                  onChanged: (String input) => _updateInput(input),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text("Done"),
+                      onPressed: _updateLayout,
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -66,7 +100,7 @@ class _StatesWithParametersState extends State<StatesWithParameters> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("State and Visual Parameters"),
+        title: Text("States and Layout Customization"),
         elevation: barElevation,
         backgroundColor: barColor,
       ),

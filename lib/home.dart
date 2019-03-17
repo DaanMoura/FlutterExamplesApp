@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   final _radius = BorderRadius.all(Radius.circular(10.0));
 
   List<String> examples = [
-    "State and visual parameters",
+    "States and Layout Customization",
     "SliverList and SliverGrid",
     "Hero",
     "Floating Navigation Bar with Navigation Drawer",
